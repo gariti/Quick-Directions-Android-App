@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_quick_search" tools:context=".QuickSearch"
+    android:background="@android:color/background_dark">
+
+    <TextView android:text="Please enter the place that you need directions to." android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/directionsText"
+        android:layout_marginTop="39dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/welcomeText"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome!"
+        android:id="@+id/welcomeText"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:textSize="40dp"
+        android:textColor="@android:color/white" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:background="@android:color/white"
+        android:capitalize="characters"
+        android:editable="false"
+        android:textSize="20dp"
+        android:text="Test"
+        android:textAlignment="center"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/directionsText"
+        android:layout_alignEnd="@+id/directionsText"
+        android:layout_alignLeft="@+id/directionsText"
+        android:layout_alignStart="@+id/directionsText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See ya."
+        android:id="@+id/goButton"
+        android:layout_marginTop="39dp"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
