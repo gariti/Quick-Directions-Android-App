@@ -7,32 +7,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import hotchemi.stringpicker.StringPicker;
 
 public class QuickSearch extends AppCompatActivity {
     private static final String TAG = QuickSearch.class.getSimpleName();
-    private EditText mAddressField;
-    private StringPicker pickModeWheel;
+    @Bind(R.id.addressInput) EditText mAddressINput;
+    @Bind(R.id.pickTransportType) StringPicker mPickTransportType;
+    @Bind(R.id.submitButton) Button mSubmitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_search);
-
-        mAddressField = (EditText) findViewById(R.id.addressInput);
-        Button goButton = (Button) findViewById(R.id.goButton);
-        pickModeWheel = (StringPicker) findViewById(R.id.pickMode);
+        ButterKnife.bind(this);
 
         String[] modes = new String[] {"Public Transport","Car","Bicycle","Walk"};
-        pickModeWheel.setValues(modes);
-
-        goButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchInput = Uri.encode(mAddressField.getText().toString());
-                startGoogleMaps(searchInput, getUriflag());
-            }
-        });
+        mPickTransportType.setValues(modes);
     }
     private void startGoogleMaps(String searchInput, String uriFlag) {
         Intent googleMaps = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?daddr=" + searchInput + "&dirflg="+ uriFlag));
@@ -42,7 +36,7 @@ public class QuickSearch extends AppCompatActivity {
     private String getUriflag() {
         //get uri code based on picker wheel choice
         String modeSelected;
-        switch (pickModeWheel.getCurrentValue()) {
+        switch (mPickTransportType.getCurrentValue()) {
             case "Public Transport":
                 modeSelected = "r";
                 break;
@@ -59,5 +53,10 @@ public class QuickSearch extends AppCompatActivity {
                 modeSelected = "r";
         }
         return modeSelected;
+    }
+    @OnClick(R.id.submitButton)
+    public void submit(View view) {
+        String searchInput = Uri.encode(mAddressINput.getText().toString());
+        startGoogleMaps(searchInput, getUriflag());
     }
 }
